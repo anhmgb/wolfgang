@@ -61,8 +61,8 @@ export default {
           success: colors.green.accent3
         },
         light: {
-          primary: '#FFDEE9',
-          secondary: '#B5FFFC',
+          primary: '#B5FFFC',
+          secondary: '#FFDEE9',
           accent: colors.yellow.lighten2,
           info: colors.teal.lighten2,
           warning: colors.amber.lighten2,
@@ -75,5 +75,9 @@ export default {
 
   // Build Configuration: https://go.nuxtjs.dev/config-build
   build: {
+  },
+
+  server: {
+    port: 4000 // default: 3000
   }
 };

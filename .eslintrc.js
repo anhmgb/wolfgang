@@ -17,6 +17,7 @@ module.exports = {
       named: 'never',
       asyncArrow: 'always'
     }],
+    'vue/attribute-hyphenation': 0,
     semi: ['error', 'always'],
     curly: [2, 'multi-or-nest'],
   },
