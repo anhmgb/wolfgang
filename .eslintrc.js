@@ -2,7 +2,7 @@ module.exports = {
   root: true,
   extends: [
     'eslint:recommended',
-    '@nuxtjs',
+    '@nuxtjs/eslint-config',
   ],
   rules: {
     'vue/component-name-in-template-casing': ['error', 'PascalCase'],
