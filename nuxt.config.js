@@ -26,6 +26,7 @@ export default {
 
   // Global CSS: https://go.nuxtjs.dev/config-css
   css: [
+    '~/assets/css/main.scss'
   ],
 
   // Plugins to run before rendering page: https://go.nuxtjs.dev/config-plugins
@@ -47,9 +48,8 @@ export default {
 
   // Vuetify module configuration: https://go.nuxtjs.dev/config-vuetify
   vuetify: {
-    customVariables: ['~/assets/variables.scss'],
+    customVariables: ['~/assets/css/variables.scss'],
     theme: {
-      dark: false,
       themes: {
         dark: {
           primary: colors.blue.darken2,
@@ -61,9 +61,9 @@ export default {
           success: colors.green.accent3
         },
         light: {
-          primary: colors.blue.lighten2,
+          primary: '#FFDEE9',
+          secondary: '#B5FFFC',
           accent: colors.yellow.lighten2,
-          secondary: colors.red.lighten2,
           info: colors.teal.lighten2,
           warning: colors.amber.lighten2,
           error: colors.deepOrange.lighten2,
