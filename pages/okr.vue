@@ -15,39 +15,39 @@
 
 <script>
 import FixedButton from '~/components/commons/FixedButton';
-import OKRCard from '~/components/commons/OKRCard';
+import OKRCard from '~/components/okr/OKRCard';
 
 const objective = {
   id: 1,
   objective: 'This is objective',
   progress: 0,
-  startTime: Date.now(),
-  endTime: Date.now(),
+  timeStart: 1615687877027,
+  timeEnd: Date.now(),
   isCreating: true,
   keyResults: [
     {
       id: 1,
-      title: 'This is key result',
-      done: 0,
-      target: 0
+      title: 'This is long text of key result',
+      done: 5,
+      target: 10
     },
     {
       id: 2,
-      title: 'This is key result',
-      done: 0,
-      target: 0
+      title: 'This is long text of key result',
+      done: 4,
+      target: 6
     },
     {
       id: 3,
-      title: 'This is key result',
-      done: 0,
-      target: 0
+      title: 'This is long text of key result',
+      done: 2,
+      target: 7
     },
     {
       id: 4,
-      title: 'This is key result',
-      done: 0,
-      target: 0
+      title: 'This is long text of key result',
+      done: 8,
+      target: 8
     },
   ],
 };

@@ -8,7 +8,20 @@
       <h3>
         {{ data.objective }}
       </h3>
-      <div>
+      <div class="d-flex align-center">
+        <div class="day-left">
+          {{ daysLeft }} days left
+        </div>
+        <v-progress-circular
+          :rotate="360"
+          :size="40"
+          :width="5"
+          :value="50"
+          color="amber"
+          class="mr-2"
+        >
+          <span class="total-progress">{{ 50 }}</span>
+        </v-progress-circular>
         <v-btn
           icon
           color="primary"
@@ -32,9 +45,13 @@
     </div>
     <v-expand-transition>
       <div v-show="isExpand" class="card-content">
-        <hr class="divider">
-        <div v-for="keyResult in data.keyResults" :key="keyResult.id">
-          {{ keyResult.title }}
+        <Divider :height="'2px'" />
+        <div
+          v-for="(keyResult, index) in data.keyResults"
+          :key="keyResult.id"
+        >
+          <Divider v-if="index" :backgroundColor="'#fffafa'" />
+          <KeyResult :keyResult="keyResult" />
         </div>
       </div>
     </v-expand-transition>
@@ -42,7 +59,12 @@
 </template>
 
 <script>
+import KeyResult from './KeyResult';
+import Divider from '~/components/commons/Divider';
+import { diffDays } from '~/utils/moment.js';
 export default {
+  components: { Divider, KeyResult },
+
   props: {
     data: {
       type: Object,
@@ -55,9 +77,18 @@ export default {
       default: () => {},
     },
   },
+
   data: () => ({
     isExpand: true,
+    date: null,
   }),
+
+  computed: {
+    daysLeft() {
+      const { timeStart, timeEnd } = this.data;
+      return diffDays(timeStart, timeEnd);
+    }
+  }
 };
 </script>
 
@@ -76,17 +107,22 @@ export default {
     align-items: center;
     justify-content: space-between;
     width: 100%;
-  }
-
-  .divider {
-    width: 100%;
-    color: black
+    padding: 8px 4px;
   }
 
   .card-content {
     display: flex;
     flex-direction: column;
     width: 100%;
+  }
+
+  .total-progress {
+    font-size: 14px;
+  }
+
+  .day-left {
+    margin-right: 4px;
+    min-width: 110px;
   }
 
 </style>
