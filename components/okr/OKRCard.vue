@@ -16,11 +16,11 @@
           :rotate="360"
           :size="40"
           :width="5"
-          :value="50"
+          :value="totalProgress(data.id)"
           color="amber"
           class="mr-2"
         >
-          <span class="total-progress">{{ 50 }}</span>
+          <span class="total-progress">{{ totalProgress(data.id) }}</span>
         </v-progress-circular>
         <v-btn
           icon
@@ -51,7 +51,7 @@
           :key="keyResult.id"
         >
           <Divider v-if="index" :backgroundColor="'#fffafa'" />
-          <KeyResult :keyResult="keyResult" />
+          <KeyResult :okrId="data.id" :keyResult="keyResult" />
         </div>
       </div>
     </v-expand-transition>
@@ -71,11 +71,6 @@ export default {
       require: true,
       default: () => ({}),
     },
-    onRemoveOKR: {
-      type: Function,
-      require: true,
-      default: () => {},
-    },
   },
 
   data: () => ({
@@ -87,6 +82,15 @@ export default {
     daysLeft() {
       const { timeStart, timeEnd } = this.data;
       return diffDays(timeStart, timeEnd);
+    },
+    totalProgress() {
+      return okrId => this.$store.getters['okr/totalProgress'](okrId);
+    },
+  },
+
+  methods: {
+    onRemoveOKR(id) {
+      console.log(`removed ${id}`);
     }
   }
 };

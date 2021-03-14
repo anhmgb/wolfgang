@@ -2,11 +2,10 @@
   <div class="container">
     <FixedButton @click.native="onAddOKR" />
     <transition-group name="list">
-      <template v-for="item in okr">
+      <template v-for="item in doingOKR">
         <OKRCard
           :key="item.id"
           :data="item"
-          :onRemoveOKR="onRemoveOKR"
         />
       </template>
     </transition-group>
@@ -14,12 +13,13 @@
 </template>
 
 <script>
+import { sync } from 'vuex-pathify';
 import FixedButton from '~/components/commons/FixedButton';
 import OKRCard from '~/components/okr/OKRCard';
 
-const objective = {
-  id: 1,
-  objective: 'This is objective',
+const okr = {
+  id: 2,
+  objective: 'This is objective 2',
   progress: 0,
   timeStart: 1615687877027,
   timeEnd: Date.now(),
@@ -29,24 +29,24 @@ const objective = {
       id: 1,
       title: 'This is long text of key result',
       done: 5,
-      target: 10
+      target: 6
     },
     {
       id: 2,
       title: 'This is long text of key result',
       done: 4,
-      target: 6
+      target: 12
     },
     {
       id: 3,
       title: 'This is long text of key result',
       done: 2,
-      target: 7
+      target: 5
     },
     {
       id: 4,
       title: 'This is long text of key result',
-      done: 8,
+      done: 2,
       target: 8
     },
   ],
@@ -55,16 +55,16 @@ const objective = {
 export default {
   components: { FixedButton, OKRCard },
   data: () => ({
-    okr: [objective]
+
   }),
+
+  computed: {
+    doingOKR: sync('okr/doing'),
+  },
 
   methods: {
     onAddOKR() {
-      this.okr = [...this.okr, { ...objective, id: 2 }];
-    },
-
-    onRemoveOKR(id) {
-      this.okr = this.okr.filter(item => item.id !== id);
+      this.$store.set('okr/newOKR', okr);
     }
   }
 };

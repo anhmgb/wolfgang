@@ -7,6 +7,7 @@
         icon
         text
         class="action-button"
+        @click="onSetKeyResultProgress(okrId, keyResult.id, minus)"
       >
         <v-icon>mdi-minus</v-icon>
       </v-btn>
@@ -18,6 +19,7 @@
         icon
         text
         class="action-button"
+        @click="onSetKeyResultProgress(okrId, keyResult.id, plus)"
       >
         <v-icon>mdi-plus</v-icon>
       </v-btn>
@@ -32,18 +34,36 @@
 </template>
 
 <script>
+import { SET_PROGRESS_TYPE_ENUM } from '~/constants/okr';
 export default {
   props: {
     keyResult: {
       type: Object,
       require: true,
       default: () => ({}),
+    },
+
+    okrId: {
+      type: Number,
+      require: true,
+      default: 0,
     }
   },
+
+  data: () => ({
+    minus: SET_PROGRESS_TYPE_ENUM.MINUS,
+    plus: SET_PROGRESS_TYPE_ENUM.PLUS,
+  }),
 
   computed: {
     progress() {
       return keyResult => keyResult.done / keyResult.target * 100;
+    }
+  },
+
+  methods: {
+    onSetKeyResultProgress(okrId, keyResultId, type) {
+      this.$store.set('okr/keyResultProgress', { okrId, keyResultId, type });
     }
   }
 };
