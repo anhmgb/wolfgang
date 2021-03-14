@@ -90,7 +90,7 @@ export default {
 
   methods: {
     onRemoveOKR(id) {
-      console.log(`removed ${id}`);
+      this.$store.set('okr/removeOKR', id);
     }
   }
 };

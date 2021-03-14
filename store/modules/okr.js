@@ -66,6 +66,12 @@ const actions = {
     const newDoingOKR = [...state[category], okr];
     commit('SET_DOING', newDoingOKR);
   },
+
+  setRemoveOKR({ commit }, okrId) {
+    const category = 'doing';
+    const newDoingOKR = state[category].filter(okr => okr.id !== okrId);
+    commit('SET_DOING', newDoingOKR);
+  }
 };
 
 const getters = {

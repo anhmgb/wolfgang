@@ -16,6 +16,9 @@
 - Seperate okr page into some component
 - Style card
 - Integrate vuex pathify store
+- Increase/decrease progress
+- Add OKR
+- Remove OKR
 ```
 
 For detailed explanation on how things work, check out [Nuxt.js docs](https://nuxtjs.org).
